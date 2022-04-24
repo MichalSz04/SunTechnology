@@ -1,0 +1,722 @@
+@import './colors';
+@import './components';
+@import './animations';
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62, 5%;
+	scroll-behavior: smooth;
+	scroll-padding-top: 210px;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	background-color: $dark-blue-color;
+	color: $white-color;
+}
+
+.link {
+	z-index: 0;
+	text-decoration: none;
+	position: relative;
+	text-transform: uppercase;
+	color: $dark-blue-color;
+	transition: color 0.3s;
+}
+
+.link::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	background-color: $dark-blue-color;
+	z-index: -1;
+	transition: height 0.3s;
+}
+
+.link:hover::after {
+	height: 100%;
+}
+.link:hover {
+	color: $white-color;
+}
+
+.nav {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	top: 0;
+	transform: translateY(-100%);
+	transition: 0.5s;
+	background-color: $dark-blue-color;
+	color: $white-color;
+	z-index: 1000;
+
+	&--active {
+		transform: translateY(0);
+	}
+	&__box {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		text-align: center;
+		margin-top: 5em;
+		&-link {
+			text-decoration: none;
+			margin-bottom: 1em;
+			padding: 0.3em;
+			font-size: 1.4rem;
+			text-transform: uppercase;
+			color: $white-color;
+		}
+	}
+	.link::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 0;
+		background-color: $white-color;
+		z-index: -1;
+		transition: height 0.3s;
+	}
+
+	.link:hover::after {
+		height: 100%;
+	}
+	.link:hover {
+		color: $dark-blue-color;
+	}
+}
+
+// NAVBAR
+
+.navbar {
+	position: sticky;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	height: 125px;
+	top: 0;
+	background-color: rgba(0, 23, 31, 0.8);
+	z-index: 1001;
+	&__logo {
+		font-size: 2.4rem;
+		a {
+			padding: 0.3em;
+			color: $white-color;
+		}
+	}
+
+	&__btn {
+		position: sticky;
+		padding: 0.75em;
+		background-color: transparent;
+		border: 1px solid transparent;
+		cursor: pointer;
+
+		&:focus {
+			outline: none;
+			outline: 3px solid $white-color;
+		}
+
+		&-box {
+			position: relative;
+			width: 40px;
+			height: 30px;
+		}
+
+		&-line {
+			position: absolute;
+			width: 100%;
+			height: 3px;
+			background-color: $white-color;
+			border-radius: 4px;
+			transition: transform 0.3s, opacity 0.3s;
+
+			&:first-child {
+				top: 27px;
+			}
+			&:last-child {
+				top: 0;
+			}
+			&:nth-child(2) {
+				bottom: 13px;
+			}
+		}
+
+		&:hover {
+			.navbar__btn-line:first-child {
+				transform: translateY(-13px) rotate(-45deg);
+			}
+			.navbar__btn-line:last-child {
+				transform: translateY(13px) rotate(45deg);
+			}
+			.navbar__btn-line:nth-child(2) {
+				opacity: 0;
+			}
+		}
+	}
+}
+
+// HEADER
+
+.header {
+	height: 950px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	margin-top: 5em;
+	padding: 0 1em;
+	overflow: hidden;
+	&__title {
+		font-size: 2.4rem;
+		margin-bottom: 1em;
+		font-weight: bold;
+		padding: 0.5em;
+	}
+	&__text {
+		font-size: 1.1rem;
+		margin-bottom: 2em;
+	}
+
+	&__btn {
+		width: 140px;
+		height: 40px;
+		margin-bottom: 8em;
+		border-radius: 8px;
+		text-transform: uppercase;
+		background-color: transparent;
+		border: 1px solid $white-color;
+		color: $white-color;
+		font-weight: bold;
+		cursor: pointer;
+		transition: background-color 0.3s;
+		a {
+			padding: 0.6em 0.2em;
+			color: $white-color;
+			text-decoration: none;
+			transition: color 0.3s;
+		}
+
+		&:hover {
+			background-color: $white-color;
+			a {
+				color: $dark-blue-color;
+			}
+		}
+	}
+	&__box {
+		position: relative;
+		width: 175px;
+		height: 175px;
+		transform: rotate(45deg);
+		border-radius: 8px;
+		border: 3px solid $white-color;
+		overflow: hidden;
+		box-shadow: -0 0 50px $white-color;
+
+		&::before {
+			content: '';
+			position: absolute;
+			width: 300%;
+			height: 150%;
+			left: -210px;
+			top: -20px;
+			background-image: url('../img/solar-system-2939551_640.jpg');
+			background-size: cover;
+			background-position: center;
+			transform: rotate(-45deg);
+		}
+	}
+}
+
+// ABOUTUS
+
+.aboutus {
+	position: relative;
+	height: 120vh;
+	background-color: $white-color;
+	color: $dark-blue-color;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	&__title {
+		text-transform: uppercase;
+		margin-bottom: 0.9em;
+		font-size: 1.8rem;
+		font-weight: bold;
+	}
+	&__text {
+		margin-bottom: 5em;
+	}
+
+	&__boxes {
+		display: flex;
+		flex-direction: column;
+	}
+	&__box {
+		font-size: 1.3rem;
+		margin-bottom: 2em;
+
+		&-text {
+			margin-bottom: 1em;
+		}
+		&-icon {
+			font-size: 1.6rem;
+		}
+	}
+	.white-block {
+		background-color: $dark-blue-color;
+	}
+}
+
+// PRODUCTS
+
+.products {
+	position: relative;
+	height: 125vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	overflow: hidden;
+
+	.underline {
+		position: relative;
+		background-color: $white-color;
+		width: 165px;
+		top: -20px;
+	}
+	&__title {
+		text-transform: uppercase;
+		margin-bottom: 0.9em;
+		font-size: 1.8rem;
+		font-weight: bold;
+	}
+	&__text {
+		margin-bottom: 3em;
+	}
+
+	.carousel-item {
+		img {
+			width: 250px;
+			height: 225px;
+			border-radius: 8px;
+			background-size: cover;
+			border: 3px solid $dark-color;
+		}
+
+		a {
+			width: 100%;
+			padding: 0.5em;
+			font-size: 1.2rem;
+			text-decoration: none;
+			border-radius: 8px;
+			color: $white-color;
+			background-color: $dark-blue-color;
+			font-weight: bold;
+		}
+	}
+}
+
+// MEDIA
+
+.media {
+	position: relative;
+	height: 100vh;
+	width: 100%;
+	background-color: $white-color;
+	color: $dark-blue-color;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	overflow: hidden;
+	.underline {
+		position: relative;
+		top: -25px;
+		width: 205px;
+	}
+	&__title {
+		text-transform: uppercase;
+		margin-bottom: 0.9em;
+		font-size: 1.8rem;
+		font-weight: bold;
+	}
+	&__text {
+		margin-bottom: 5em;
+	}
+	&__box {
+		display: flex;
+		flex-direction: row;
+		font-size: 2.4rem;
+		a {
+			color: $dark-blue-color;
+			margin: 0 0.5em;
+			padding: 0.2em;
+		}
+		&-icon:first-child {
+			animation: float 5s infinite;
+		}
+		&-icon:nth-child(2) {
+			animation: float 5s 1s infinite;
+		}
+		&-icon:last-child {
+			animation: float 5s 2s infinite;
+		}
+	}
+	.white-block {
+		background-color: $dark-blue-color;
+	}
+}
+
+// CONTACT
+
+.contact {
+	position: relative;
+	width: 100%;
+	height: 150vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	overflow: hidden;
+	margin-top: 2em;
+	padding: 0 2em;
+
+	.white-block {
+		background-color: $dark-color;
+	}
+	.underline {
+		position: relative;
+		width: 145px;
+		top: -25px;
+		background-color: $white-color;
+	}
+	&__title {
+		text-transform: uppercase;
+		margin-bottom: 0.9em;
+		font-size: 1.8rem;
+		font-weight: bold;
+	}
+	&__text {
+		margin-bottom: 5em;
+	}
+
+	&__area {
+		&-input {
+			width: 100%;
+			margin-bottom: 1em;
+			border-radius: 8px;
+		}
+		&-label {
+			margin-bottom: 0.3em;
+		}
+		&-textarea {
+			width: 100%;
+			border-radius: 8px;
+			height: 25%;
+			resize: none;
+			margin-bottom: 2.5em;
+		}
+		&-btn {
+			width: 140px;
+			height: 40px;
+			border-radius: 8px;
+			text-transform: uppercase;
+			background-color: transparent;
+			border: 1px solid $white-color;
+			color: $white-color;
+			font-weight: bold;
+			cursor: pointer;
+			transition: background-color 0.3s, color 0.3s;
+
+			&:hover {
+				background-color: $white-color;
+				color: $dark-blue-color;
+			}
+		}
+	}
+}
+
+// FOOTER
+
+.footer {
+	height: 50vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: $dark-color;
+	&__title {
+		margin-bottom: 1em;
+	}
+	&__text {
+		font-size: 0.8rem;
+	}
+}
+
+// MEDIA
+
+@media (min-width: 320px) {
+	.header {
+		height: 130vh;
+	}
+
+	.aboutus {
+		height: 145vh;
+	}
+	.media {
+		&__box {
+			a {
+				margin: 0.5em;
+			}
+		}
+	}
+}
+@media (min-width: 375px) {
+	.header {
+		height: 110vh;
+	}
+	.aboutus {
+		height: 125vh;
+	}
+	.products {
+		height: 105vh;
+		.carousel-item {
+			img {
+				width: 275px;
+				height: 225px;
+			}
+		}
+	}
+	.media {
+		height: 90vh;
+		&__box {
+			a {
+				margin: 0.7em;
+			}
+		}
+	}
+	.contact {
+		height: 125vh;
+	}
+	.footer {
+		height: 40vh;
+	}
+}
+
+@media (min-width: 414px) {
+	.aboutus {
+		height: 110vh;
+	}
+	.products {
+		height: 100vh;
+		.carousel-item {
+			img {
+				width: 315px;
+				height: 245px;
+			}
+		}
+	}
+	.contact {
+		height: 115vh;
+	}
+}
+@media (min-width: 576px) {
+	.header {
+		height: 80vh;
+		&__box {
+			width: 275px;
+			height: 275px;
+			&::before {
+				left: -250px;
+				top: -100px;
+			}
+		}
+	}
+	.aboutus {
+		height: 70vh;
+	}
+}
+@media (min-width: 768px) {
+	body {
+		p {
+			font-size: 1.2rem;
+		}
+	}
+
+	.header {
+		height: 90vh;
+		p {
+			font-size: 1.2rem;
+		}
+		&__box {
+			width: 275px;
+			height: 275px;
+			&::before {
+				left: -250px;
+				top: -100px;
+			}
+		}
+	}
+	.aboutus {
+		height: 80vh;
+	}
+
+	.products {
+		height: 80vh;
+		.carousel-item {
+			img {
+				width: 485px;
+				height: 335px;
+			}
+		}
+		.carousel-item {
+			a {
+				padding: 0.5em 2em;
+			}
+		}
+	}
+	.media {
+		height: 90vh;
+		&__box {
+			&-icon {
+				margin: 0 0.8em;
+			}
+			a {
+				margin: 1em;
+			}
+		}
+	}
+	.contact {
+		height: 80vh;
+	}
+	.footer {
+		height: 30vh;
+	}
+	.nav {
+		&__box {
+			&-link {
+				font-size: 2rem;
+			}
+		}
+	}
+}
+@media (min-width: 992px) {
+	.header {
+		&__box {
+			width: 275px;
+			height: 275px;
+			&::before {
+				background-image: url('../img/solar-system-2939551_1920.jpg');
+				left: -250px;
+				top: -100px;
+			}
+		}
+	}
+}
+
+@media (min-width: 1024px) {
+	body {
+		p {
+			font-size: 1.4rem;
+		}
+	}
+
+	.header {
+		height: 80vh;
+		p {
+			font-size: 1.4rem;
+		}
+	}
+	.aboutus {
+		height: 55vh;
+		&__boxes {
+			flex-direction: row;
+		}
+		&__box {
+			&-text {
+				padding: 2em;
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.products {
+		height: 85vh;
+		.carousel-item {
+			img {
+				width: 595px;
+				height: 425px;
+			}
+		}
+		.carousel-item {
+			a {
+				padding: 0.5em 3em;
+			}
+		}
+	}
+	.media {
+		height: 60vh;
+		&__box {
+			&-icon {
+				margin: 0 1em;
+			}
+		}
+	}
+	.contact {
+		height: 80vh;
+	}
+	.footer {
+		height: 25vh;
+	}
+}
+@media (min-width: 1200px) {
+	.header {
+		height: 80vh;
+		&__box {
+			width: 275px;
+			height: 275px;
+			&::before {
+				left: -250px;
+				top: -100px;
+			}
+		}
+	}
+	.aboutus {
+		height: 60vh;
+	}
+}
+
+@media (min-width: 1400px) {
+	.media {
+		&__box {
+			a {
+				margin: 2.8em;
+			}
+		}
+	}
+}
